@@ -432,6 +432,7 @@
     .hero-image {
         flex: 1;
         position: relative;
+       
     }
     
     .subtitle {
@@ -471,45 +472,107 @@
         position: relative;
         max-width: 400px;
         margin: 0 auto;
+        padding: 20px;
     }
-    
+
     .main-image {
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow);
         position: relative;
         z-index: 1;
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: var(--transition);
+        /* Glowing border effect */
+        border: 2px solid transparent;
+        animation: borderGlow 8s infinite linear;
+        filter: brightness(1);
+        transform: scale(1);
     }
-    
-    .tech-icons {
+
+    /* Glowing border animation */
+    @keyframes borderGlow {
+        0% {
+            box-shadow: 0 0 10px 3px var(--primary-color),
+                        inset 0 0 10px 3px var(--primary-color);
+            border-color: rgba(108, 99, 255, 0.3);
+        }
+        25% {
+            box-shadow: 0 0 15px 5px var(--secondary-color),
+                        inset 0 0 15px 5px var(--secondary-color);
+            border-color: rgba(255, 101, 132, 0.3);
+        }
+        50% {
+            box-shadow: 0 0 12px 4px var(--info-color),
+                        inset 0 0 12px 4px var(--info-color);
+            border-color: rgba(33, 150, 243, 0.3);
+        }
+        75% {
+            box-shadow: 0 0 15px 5px var(--success-color),
+                        inset 0 0 15px 5px var(--success-color);
+            border-color: rgba(76, 175, 80, 0.3);
+        }
+        100% {
+            box-shadow: 0 0 10px 3px var(--primary-color),
+                        inset 0 0 10px 3px var(--primary-color);
+            border-color: rgba(108, 99, 255, 0.3);
+        }
+    }
+
+    /* Hover effects */
+    .main-image:hover {
+        filter: brightness(0.7) contrast(1.1);
+        transform: scale(0.98);
+        animation-play-state: paused;
+    }
+
+    .floating-tools {
         position: absolute;
+        bottom: -30px;
+        left: 0;
+        right: 0;
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
         gap: 15px;
-        width: 100%;
-        animation: float 6s ease-in-out infinite;
+        z-index: 2;
     }
-    
-    .tech-icons i {
-        font-size: 2.5rem;
-        color: var(--primary-color);
-        background-color: var(--dark-secondary);
-        width: 60px;
-        height: 60px;
+
+    .tool-icon {
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        object-fit: contain;
+        background: var(--dark-tertiary);
+        padding: 5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         transition: var(--transition);
+        animation: float 3s ease-in-out infinite;
+        opacity: 0.9;
     }
-    
-    .tech-icons i:hover {
-        transform: translateY(-5px);
-        color: var(--text-color);
-        background-color: var(--primary-color);
+
+    .tool-icon:hover {
+        transform: translateY(-5px) scale(1.1);
+        opacity: 1;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
     }
-    
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    /* Individual delays for each tool icon */
+    .tool-icon:nth-child(1) { animation-delay: 0s; }
+    .tool-icon:nth-child(2) { animation-delay: 0.5s; }
+    .tool-icon:nth-child(3) { animation-delay: 1s; }
+    .tool-icon:nth-child(4) { animation-delay: 1.5s; }
+    .tool-icon:nth-child(5) { animation-delay: 2s; }
+    .tool-icon:nth-child(6) { animation-delay: 2.5s; }
     .scroll-down {
         position: absolute;
         bottom: 30px;
